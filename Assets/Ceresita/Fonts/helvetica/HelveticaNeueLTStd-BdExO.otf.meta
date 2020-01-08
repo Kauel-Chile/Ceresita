@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 16e8d417b08a54144a2feb7676cfc5ee
+timeCreated: 1485499088
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Helvetica Neue LT Std
+  fontNames:
+  - Helvetica Neue LT Std
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 169f09d89bdcba54f8412681dad6aa7b, type: 3}
+  - {fileID: 12800000, guid: 018a7a99b569df64cbb2971250b6d5db, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

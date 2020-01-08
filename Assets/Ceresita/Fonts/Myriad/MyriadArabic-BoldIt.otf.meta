@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1f19772e0ac034541a4d27c4dccf91eb
+timeCreated: 1485499088
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Myriad Arabic
+  fontNames:
+  - Myriad Arabic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

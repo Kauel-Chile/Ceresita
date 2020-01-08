@@ -1,0 +1,5 @@
+KeystorePass:
+Kauel123
+
+KeyPass:
+Kauel123key

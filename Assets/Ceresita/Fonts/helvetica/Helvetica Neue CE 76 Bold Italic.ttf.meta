@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 9d24df0e8d829964aa622df2a0a84f5e
+timeCreated: 1485499090
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Helvetica CE 55 Roman
+  fontNames:
+  - Helvetica CE 55 Roman
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7ae3dccfe4ed69a438e3f0d7d5c46029, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

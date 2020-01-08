@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 22fcfa853242cf24d97f73b0a3bd107b
+timeCreated: 1485499088
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Helvetica Rounded LT Std
+  fontNames:
+  - Helvetica Rounded LT Std
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

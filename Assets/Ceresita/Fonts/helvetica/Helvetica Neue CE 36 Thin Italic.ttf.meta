@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0f473462b7fea414b99d41e99e7f9b22
+timeCreated: 1485499088
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Helvetica CE 35 Thin
+  fontNames:
+  - Helvetica CE 35 Thin
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

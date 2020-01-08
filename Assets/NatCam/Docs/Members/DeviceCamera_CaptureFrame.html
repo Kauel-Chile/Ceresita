@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang='en-US'>
+    <head>
+        <!--Document title is project name-->
+        <title>NatCam Scripting Reference on Calligraphy</title>
+        <!--Extra information-->
+        <meta name='description' content='NatCam API documentation on Calligraphy'> <!--Populate from Calligraphy-->
+        <meta name='keywords' content='NatCam, Calligraphy, Unity'> <!--Populate from Calligraphy-->
+        <meta name='author' content='Calligraphy by Yusuf Olokoba'>
+        <meta charset='UTF-8'>
+        <!--Style sheet-->
+        <link rel='stylesheet' href='../Styles/memberstyles.css'>
+    </head>
+	
+	<body>
+        <h1 class='blockname'><a href='../Groups/DeviceCamera.html'>DeviceCamera</a>.CaptureFrame</h1>
+        <p1 class='faintname'>public  void CaptureFrame (byte[] pixels)<b>;</b></p1>
+        <br>
+        <br>
+        <h2>Description</h2>
+        <p1>Capture the current preview frame.<br><br>
+            The preview data is copied into the provided byte array. The byte array must be 
+            initialized to a size of at least (NatCam.Preview.width * NatCam.Preview.height * 4).</p1>
+        <br>
+        <br>
+        
+        <!--Code example-->
+        <!--Must not be indented-->
+        <!--There must be no space between the text and the pre tags-->
+
+<code>
+<pre>void DrawLine () { <font color='green'>// Uses OpenCV to draw a line on the preview</font>
+    <font color='green'>// Create a pixel buffer</font>
+    var pixelBuffer = new byte[NatCam.Preview.width * NatCam.Preview.height * 4];
+    <font color='green'>// Capture the preview frame</font>
+    NatCam.CaptureFrame(pixelBuffer);
+    <font color='green'>// Copy to an OpenCV matrix</font>
+    Mat matrix = new Mat(NatCam.Preview.height, NatCam.Preview.width, CvType.CV_8UC4);
+    matrix.put(0, 0, pixelBuffer);
+    <font color='green'>// Draw a line</font>
+    Imgproc.line(
+        matrix,                                     <font color='green'>// Matrix</font>
+        new Point(0, 0),                            <font color='green'>// Line start</font>
+        new Point(matrix.cols(), matrix.rows()),    <font color='green'>// Line end</font>
+        new Scalar(255, 0, 0, 255),                 <font color='green'>// Line color</font>
+        4                                           <font color='green'>// Line thickness</font>
+    );
+    <font color='green'>// Display it</font>
+    texture = new Texture2D(matrix.cols(), matrix.rows());
+    Utils.matToTexture2D(matrix, texture);
+    rawImage.texture = texture;
+}</pre>
+</code>
+<br>
+        
+        
+        <!--See Also-->
+        
+        
+        <!--Copyright tag-->
+        <br>
+        <hr>
+        <p1 class='copyright'><small>Copyright (c) Yusuf Olokoba 2016</small></p1>
+        
+	</body>
+</html>        
+        
