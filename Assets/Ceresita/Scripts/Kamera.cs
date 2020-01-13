@@ -522,9 +522,17 @@ public class Kamera : MonoBehaviour {
 
         //Allocate Mem
 
-        if (tex is Texture2D) CameraColors32 = ((Texture2D)tex).GetPixels32();
+        if (tex is Texture2D)
+        {
+            Debug.Log("Kauel: tex is texture2D");
+            CameraColors32 = ((Texture2D)tex).GetPixels32();
+        }
 
-        else CameraColors32 = new Color32[tex.width * tex.height];
+        else
+        {
+            Debug.Log("Kauel: tex is texture");
+            CameraColors32 = new Color32[tex.width * tex.height];
+        }
 
         IntPtr CameraPointer32 = Marshal.UnsafeAddrOfPinnedArrayElement(CameraColors32, 0);
 

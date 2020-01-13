@@ -64,6 +64,9 @@ public class MobileGallery : MonoBehaviour {
 
                 Alert.Singleton.ShowAlert(Alert.Message.LOADING, false, delegate () {
 
+
+                    Debug.Log("Kauel: w:"+tex.width + "h:"+ tex.height );
+
                     int w = tex.width;
 
                     int h = tex.height;
@@ -102,7 +105,7 @@ public class MobileGallery : MonoBehaviour {
 
 
 
-		},true,ImagePickerType.UIImagePickerControllerSourceTypeSavedPhotosAlbum );
+		},true,ImagePickerType.UIImagePickerControllerSourceTypePhotoLibrary );
 
     }
 

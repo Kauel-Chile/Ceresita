@@ -22127,7 +22127,7 @@ PrefabInstance:
     - target: {fileID: 224671324242000836, guid: c0eb461f4096f424cb924e640d1808b2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 127.999954
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 224671324242000836, guid: c0eb461f4096f424cb924e640d1808b2,
         type: 3}
@@ -44660,11 +44660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11423598, guid: e7141619d8f74434c8643d9578d030ca, type: 3}
       propertyPath: LoadImageMethod
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11423598, guid: e7141619d8f74434c8643d9578d030ca, type: 3}
       propertyPath: rotateImportedImage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11423598, guid: e7141619d8f74434c8643d9578d030ca, type: 3}
       propertyPath: verbose
