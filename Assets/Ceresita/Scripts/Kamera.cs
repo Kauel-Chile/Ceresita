@@ -239,10 +239,13 @@ public class Kamera : MonoBehaviour {
 
     private DeviceCamera NatCamCamera;
     private Texture previewTexture;
+    private Texture2D previewTexture2D;
     
     private Texture2D photo;
     // Use this for initialization
-    //private AspectRatioFitter aspectFitter;
+    public AspectRatioFitter aspectFitter;
+    private Byte[] Video_buffer = null;
+
 
 
     void Start () {
@@ -256,12 +259,12 @@ public class Kamera : MonoBehaviour {
 
     public void StartCamera() {
 
-        if (NatCamCamera == null) {
-
-            NatCamCamera = DeviceCamera.FrontCamera;
+     //   if (NatCamCamera == null) {
+      //      Debug.Log("entra aqui?");
+           // NatCamCamera = DeviceCamera.FrontCamera;
             //NatCamCamera.StartPreview(OnStart, OnFrame);
-            NatCamCamera.StartPreview(OnStart);
-        }
+         //   NatCamCamera.StartPreview(OnStart);
+      //  }
 
         
         Debug.Log("Kauel: StartCamera()");
@@ -270,16 +273,24 @@ public class Kamera : MonoBehaviour {
 
         Mode = KameraMode.Camera;
 
-        RawImageCamera.texture = previewTexture;
+        /////////////////////////////////////////////////////   RawImageCamera.texture = previewTexture;
         //RawImageCamera.texture = preview;
         //previewTexture = preview;
-        
-        #if UNITY_EDITOR
-          //  NatCamCamera = CameraDevice.GetDevices()[0];
 
-        #elif UNITY_ANDROID
+#if UNITY_EDITOR
+        NatCamCamera = DeviceCamera.Cameras[0];
+        ////////////////////////////////////////////////////// CamCreated = true;
+
+
+
+
+
+#elif UNITY_ANDROID
 
             Debug.Log("Kauel: Android");
+
+            NatCamCamera = DeviceCamera.RearCamera;
+
 
           /*  if (NatCam.HasPermissions) {
 
@@ -294,21 +305,32 @@ public class Kamera : MonoBehaviour {
             NatCamCamera = CameraDevice.GetDevices()[0];
           */
 
+       // NatCamCamera = DeviceCamera.Cameras[0];
             if(!CamCreated){
 
-                //CamCreated = true;
-                //NatCam.Camera = DeviceCamera.RearCamera;
-                //var NatCamCamera = CameraDevice.GetDevices()[0]; 
-                //NatCamCamera.SetPreviewResolution(ResolutionPreset.FullHD);
-                //NatCamCamera.SetPhotoResolution(ResolutionPreset.FullHD);
-                //NatCamCamera.SetFramerate(FrameratePreset.Default);
+             //   CamCreated = true;
+             //   NatCamCamera = DeviceCamera.Cameras[0];
+             //   NatCamCamera = DeviceCamera.RearCamera;
+             //   NatCamCamera.PreviewResolution.Set(1920, 1080);
+             //   NatCamCamera.PhotoResolution.Set(1920, 1080);
+             //   Debug.Log("Kauel: CamCreated");
+
+               // NatCam.Camera = DeviceCamera.RearCamera;
+               // var NatCamCamera = CameraDevice.GetDevices()[0]; 
+               //  NatCamCamera = CameraDevice.GetDevices()[0];
+                
+               // NatCamCamera = DeviceCamera.RearCamera;
+               
+              //  NatCamCamera.SetPreviewResolution(ResolutionPreset.FullHD);
+              //  NatCamCamera.SetPhotoResolution(ResolutionPreset.FullHD);
+              //  NatCamCamera.SetFramerate(FrameratePreset.Default);
             
-                Debug.Log("Kauel: CamCreated");
+              //  Debug.Log("Kauel: CamCreated");
 
             }
 
 
-		#elif UNITY_IOS
+#elif UNITY_IOS
 
 		Debug.Log("Kauel: iOS");
 
@@ -329,13 +351,11 @@ public class Kamera : MonoBehaviour {
 
 		}
 
-		#endif
+#endif
 
 
-		//NatCam.StartPreview(DeviceCamera.RearCamera);
 
-        //NatCam.OnStart -= OnPreviewStart;
-        //NatCam.OnStart += OnPreviewStart;
+        NatCamCamera.StartPreview(OnStart);
 
         PanelSelector.ShowOnlyThisPanel(0); //Solo el panel de fotos
 
@@ -345,36 +365,67 @@ public class Kamera : MonoBehaviour {
 
     }
 
-        void OnStart (Texture preview) {
-            Debug.Log("NatCam2: On Start");
-            // Display the camera preview on a RawImage
-            RawImageCamera.texture = preview;
-            previewTexture = preview;
-           // aspectFitter.aspectRatio = preview.width / (float)preview.height;
-        }
-
-/* 
-		void OnStart (Texture preview) {
-			// Create texture
-			texture = new Texture2D(preview.width, preview.height, TextureFormat.RGBA32, false, false);
-			rawImage.texture = texture;
-			// Scale the panel to match aspect ratios
+    private void OnStart(Texture preview) {
+        Debug.Log("NatCam2: On Start" + "width:"+ preview.width + "height:" + preview.height + "formato:" + preview.graphicsFormat.ToString());
             aspectFitter.aspectRatio = preview.width / (float)preview.height;
-			// Create pixel buffer
-			buffer = new byte[preview.width * preview.height * 4];
-		}
+            RawImageCamera.texture = preview;
+    }
 
-		void OnFrame () {
-			// Capture the preview frame
-			deviceCamera.CaptureFrame(buffer);
-			// Convert to greyscale
-			ConvertToGrey(buffer);
-			// Fill the texture with the greys
-			texture.LoadRawTextureData(buffer);
-			texture.Apply();
-		}
+/*
+    void OnStart(Texture preview)
+    {
+        // Create texture
+        Texture2D _texture2D = new Texture2D(preview.width, preview.height, TextureFormat.RGBA32, false, false);
+
+        _texture2D.ReadPixels(new Rect(0, 0, preview.width, preview.height), 0, 0);
+        _texture2D.Apply();
+
+        RawImageCamera.texture = _texture2D;
+        // Scale the panel to match aspect ratios
+        aspectFitter.aspectRatio = preview.width / (float)preview.height;
+        // Create pixel buffer
+      //  Video_buffer = new byte[preview.width * preview.height * 4];
+    }
+
+    /*
+
+    void OnFrame()
+    {
+        Texture2D texture = new Texture2D(NatCamCamera.PreviewResolution.x, NatCamCamera.PreviewResolution.y, TextureFormat.RGBA32, false, false);
+        // Capture the preview frame
+        NatCamCamera.CaptureFrame(Video_buffer);
+        // Convert to greyscale
+      //  ConvertToGrey(Video_buffer);
+        // Fill the texture with the greys
+        texture.LoadRawTextureData(Video_buffer);
+        texture.Apply();
+        RawImageCamera.texture = texture;
+
+    }
 
 */
+    /* 
+            void OnStart (Texture preview) {
+                // Create texture
+                texture = new Texture2D(preview.width, preview.height, TextureFormat.RGBA32, false, false);
+                rawImage.texture = texture;
+                // Scale the panel to match aspect ratios
+                aspectFitter.aspectRatio = preview.width / (float)preview.height;
+                // Create pixel buffer
+                buffer = new byte[preview.width * preview.height * 4];
+            }
+
+            void OnFrame () {
+                // Capture the preview frame
+                deviceCamera.CaptureFrame(buffer);
+                // Convert to greyscale
+                ConvertToGrey(buffer);
+                // Fill the texture with the greys
+                texture.LoadRawTextureData(buffer);
+                texture.Apply();
+            }
+
+    */
     public void Init() {
 
         Debug.Log("Kauel: Init()");
@@ -655,9 +706,13 @@ public class Kamera : MonoBehaviour {
 
         if (Mode == KameraMode.Camera) {
             Debug.Log("KAmera Mode");
-            RawImageCamera.texture = previewTexture;
+           
             // Free the photo texture
             Texture2D.Destroy(photo); photo = null;
+            NatCamCamera.StopPreview();
+            NatCamCamera.StartPreview(OnStart);
+
+            RawImageCamera.texture = previewTexture;
         }
 
     }
@@ -666,7 +721,7 @@ public class Kamera : MonoBehaviour {
     public void StopCamera() {
 
         Debug.Log("Kauel: StopCamera()");
-
+        NatCamCamera.StopPreview();
         //NatCam.Pause();
         //NatCam.StopPreview();
 

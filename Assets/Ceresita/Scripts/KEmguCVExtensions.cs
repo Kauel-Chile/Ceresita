@@ -1886,9 +1886,10 @@ public static class KEmguCVExtensions {
 
         RenderTexture temp = RenderTexture.GetTemporary(tex.width, tex.height);
 
-        //Siguiente linea comentada por actualizacion de Plugin
-        //Graphics.Blit(tex, temp);
+                //Siguiente linea comentada por actualizacion de Plugin
+                //Graphics.Blit(tex, temp);
 
+        UnityEngine.Graphics.Blit(tex, temp);
         Texture2D copy = new Texture2D(tex.width, tex.height,TextureFormat.RGB24,false);
 
 
