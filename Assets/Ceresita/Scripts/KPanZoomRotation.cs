@@ -385,7 +385,7 @@ public class KPanZoomRotation : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         if (!rawImage) rawImage = GetComponent<RawImage>();
 
-
+        Debug.Log("Kauel: RectTransform w:" + rt.rect.width + "h:" + rt.rect.height);
 
         rt.localPosition = new Vector3(0, 0, 0);
 
@@ -395,12 +395,13 @@ public class KPanZoomRotation : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         rt.pivot = new Vector2(0.5f, 0.5f);
 
-
+        
 
         float texW = rawImage.texture.width;
 
         float texH = rawImage.texture.height;
 
+        Debug.Log("Kauel: rawimage w:" + texW + "h:" + texH);
 
 
         if ((texW <= 0) || (texH <= 0)) return;
@@ -424,6 +425,9 @@ public class KPanZoomRotation : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             rt.sizeDelta = new Vector2(w2, 1080);
 
         }
+
+        Debug.Log("Kauel: RectTransform2 w:" + rt.rect.width + "h:" + rt.rect.height);
+        Debug.Log("Kauel: screenSize w:" + Screen.width + "h:" + Screen.height);
 
     }
 
