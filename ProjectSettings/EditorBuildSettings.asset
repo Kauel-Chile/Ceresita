@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Ceresita/Scenes/ScenePreload.unity
+    guid: e877569fb461a084488abefb67262188
+  - enabled: 1
     path: Assets/Ceresita/Scenes/Scene01.unity
     guid: 7ac87027758ae22449d671c924bd78be
   m_configObjects: {}

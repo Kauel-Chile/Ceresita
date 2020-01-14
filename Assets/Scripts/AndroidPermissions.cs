@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class AndroidPermissions : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class AndroidPermissions : MonoBehaviour
             {
                 Permission.RequestUserPermission(Permission.Camera);
                 Debug.Log("KAUEL: Request Permission");
+                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
             else
             {
@@ -53,6 +55,7 @@ public class AndroidPermissions : MonoBehaviour
             {
                 Permission.RequestUserPermission(Permission.Camera);
                 Debug.Log("KAUEL: Request Permission");
+                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
             else
             {
