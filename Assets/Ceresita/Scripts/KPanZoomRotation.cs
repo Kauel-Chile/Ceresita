@@ -385,7 +385,7 @@ public class KPanZoomRotation : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         if (!rawImage) rawImage = GetComponent<RawImage>();
 
-        Debug.Log("Kauel: RectTransform w:" + rt.rect.width + "h:" + rt.rect.height);
+      //  Debug.Log("Kauel: RectTransform w:" + rt.rect.width + "h:" + rt.rect.height);
 
         rt.localPosition = new Vector3(0, 0, 0);
 
@@ -401,33 +401,74 @@ public class KPanZoomRotation : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         float texH = rawImage.texture.height;
 
-        Debug.Log("Kauel: rawimage w:" + texW + "h:" + texH);
+      //  Debug.Log("Kauel: rawimage w:" + texW + "h:" + texH);
 
 
         if ((texW <= 0) || (texH <= 0)) return;
 
+        //VER SI LA APLICACIÓN ESTA PORTRAIT O LANDSCAPE
 
+        if(Screen.width>=Screen.height)
+        {
+            float factor1 = Screen.width / texW;
 
-        float factor1 = 1920 / texW;
+            float h1 = texH * factor1;
 
-        float h1 = texH * factor1;
+            if (h1 <= Screen.height)
+            {
 
-        if (h1 <= 1080) {
+                float factorCanvas = (1920f / Screen.width);
 
-            rt.sizeDelta = new Vector2(1920, h1);
+                rt.sizeDelta = new Vector2(Screen.width * factorCanvas, h1 * factorCanvas);
 
-        } else {
+            }
+            else
+            {
 
-            float factor2 = 1080 / texH;
+                float factor2 = Screen.height / texH;
 
-            float w2 = texW * factor2;
+                float w2 = texW * factor2;
 
-            rt.sizeDelta = new Vector2(w2, 1080);
+                float factorCanvas = (1920f / Screen.width);
 
+                rt.sizeDelta = new Vector2(w2*factorCanvas, Screen.height * factorCanvas);
+
+            }
         }
+        else
+        {
+            float factor1 = Screen.height / texH;
 
-        Debug.Log("Kauel: RectTransform2 w:" + rt.rect.width + "h:" + rt.rect.height);
-        Debug.Log("Kauel: screenSize w:" + Screen.width + "h:" + Screen.height);
+            float w1 = texW * factor1;
+
+            if (w1 <= Screen.width)
+            {
+
+                float factorCanvas = (1920f / Screen.width);
+
+                rt.sizeDelta = new Vector2(w1*factorCanvas, Screen.height * factorCanvas);
+
+            }
+            else
+            {
+
+                float factor2 = Screen.width / texW;
+
+                float h2 = texH * factor2;
+
+                float factorCanvas = (1920f / Screen.width);
+
+            //    Debug.Log("Kauel: factorCanvas:" + factorCanvas);
+
+                rt.sizeDelta = new Vector2(Screen.width*factorCanvas, h2*factorCanvas);
+
+            }
+        }
+        
+
+       
+      //  Debug.Log("Kauel: RectTransform2 w:" + rt.rect.width + "h:" + rt.rect.height);
+     //   Debug.Log("Kauel: screenSize w:" + Screen.width + "h:" + Screen.height);
 
     }
 
