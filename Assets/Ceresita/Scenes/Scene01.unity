@@ -18530,9 +18530,7 @@ MonoBehaviour:
   kuiPanelManager: {fileID: 1008284501}
   message: {fileID: 1419976115}
   permsRead:
-  - public_profile
   - email
-  - user_friends
   permsPublish:
   - publish_actions
 --- !u!4 &700840253
